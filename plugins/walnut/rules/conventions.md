@@ -22,7 +22,7 @@ Every `.md` file in the system has YAML frontmatter. No exceptions. The frontmat
 | Working files | squirrel, model, version, previous, kept, changed |
 | Companions | type, description, type-specific fields, squirrel, tags |
 | Rules | version, type, description |
-| Skills | description, triggers |
+| Skills | name, description, user-invocable |
 
 **Every companion must have `description:` in frontmatter.** This is the one-line scan that tells the squirrel what the reference contains without reading the body. It's the difference between a useful reference system and a pile of files.
 
@@ -268,6 +268,24 @@ Nothing gets deleted. Archive is graduation — the walnut served its purpose.
 - The walnut just doesn't show on `walnut:world` dashboard
 
 **The archive enforcer hook** prevents deletion inside ALIVE folders. If someone tries `rm` on anything in the system, the hook blocks it and suggests archiving instead.
+
+---
+
+## Third-Party Skill Overrides
+
+External plugins (superpowers, etc.) assume standard code project layouts — `docs/plans/`, `src/`, `tests/`. These paths don't exist in a World. The squirrel must intercept and reroute.
+
+**Before any skill creates a file, ask:** "Am I in a walnut? Where does this belong?"
+
+| Skill output | Route to instead |
+|-------------|-----------------|
+| `docs/plans/*.md` | `{active-walnut}/_core/_working/plans/` |
+| `docs/*.md` | `{active-walnut}/_core/_working/` |
+| Any file at World root | Determine the walnut it belongs to, route to `_core/_working/` or `_core/_references/` |
+
+**No orphan files at World root.** The only things at root level are the 5 ALIVE domain folders, `.claude/`, and dotfiles. Everything else belongs inside a walnut.
+
+If no walnut is active and a skill wants to write a file, ask the conductor where it should go before writing.
 
 ---
 

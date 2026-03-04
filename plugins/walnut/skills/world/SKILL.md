@@ -1,33 +1,7 @@
 ---
-description: See your whole world. Dashboard, attention items, system state detection. Entry point for everything.
+name: world
+description: "Use when the conductor wants a dashboard view of all active walnuts, feels lost, or is unsure what to work on next. Renders a live world view grouped by ALIVE domain — priorities, attention items, full walnut tree, and recent activity — then routes to open, housekeeping, find, or recall."
 user-invocable: true
-triggers:
-  # Direct
-  - "walnut:world"
-  - "world"
-  - "home"
-  - "dashboard"
-  # Intent
-  - "show me everything"
-  - "show me my world"
-  - "what do I have"
-  - "what's in my world"
-  # Status
-  - "what's going on"
-  - "what needs me"
-  - "what needs attention"
-  - "status"
-  - "overview"
-  - "summary"
-  # Time-based
-  - "start of day"
-  - "morning check"
-  - "daily review"
-  - "what should I work on"
-  # Lost/confused
-  - "where am I"
-  - "what's active"
-  - "help me prioritize"
 ---
 
 # World
@@ -45,7 +19,7 @@ NOT a database dump. NOT a flat list. A living view of their world, grouped by w
 3. Scan all `_core/now.md` files — extract health status, last updated, next action
 4. Build the tree — parent/child relationships from `parent:` field in key.md
 5. Compute attention items
-6. Surface API context if configured (Gmail, Slack, Calendar via world-config.yaml)
+6. Surface API context if configured (Gmail, Slack, Calendar via preferences.yaml)
 
 ## State Detection
 
@@ -217,9 +191,9 @@ What's been happening across the world. A pulse check.
 
 ---
 
-## API Context (world-config.yaml)
+## API Context (preferences.yaml)
 
-If the conductor has configured context sources in `.claude/world-config.yaml`, surface relevant items:
+If the conductor has configured context sources in `.home/preferences.yaml`, surface relevant items:
 
 - **Gmail (MCP live):** Unread count, recent senders, anything flagged
 - **Slack (sync script):** Unread mentions, DMs
@@ -228,7 +202,7 @@ If the conductor has configured context sources in `.claude/world-config.yaml`, 
 
 Only show API context that's actionable. "3 unread emails from Will" is useful. "You have 847 emails" is not.
 
-Filter API context by walnut scoping — only show sources relevant to active walnuts (from world-config.yaml `walnuts:` field).
+Filter API context by walnut scoping — only show sources relevant to active walnuts (from preferences.yaml `walnuts:` field).
 
 ---
 

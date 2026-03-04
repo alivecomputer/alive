@@ -1,37 +1,7 @@
 ---
-description: Rebuild context from previous sessions. Browse, query, combine, and revive squirrel sessions — including full conversation transcripts.
+name: recall
+description: "Use when the conductor wants to resume a previous session, understand what happened in past work, or transfer context into a new conversation — searches session history, then rebuilds and delivers context as a structured briefing or handoff document."
 user-invocable: true
-triggers:
-  # Direct
-  - "walnut:recall"
-  - "recall"
-  # Resume
-  - "pick up where I left off"
-  - "what was I working on"
-  - "continue that session"
-  - "resume"
-  - "revive"
-  # Browse
-  - "what have I been doing"
-  - "show me recent sessions"
-  - "what happened this week"
-  - "what did we do on"
-  - "session history"
-  # Query
-  - "that creative session where"
-  - "the session about"
-  - "when did I last work on"
-  - "find that conversation"
-  # Combine
-  - "combine those sessions"
-  - "merge the context from"
-  - "give me everything about"
-  - "I need the full picture on"
-  # Handoff
-  - "handoff"
-  - "hand off"
-  - "context transfer"
-  - "brief me on"
 ---
 
 # Recall

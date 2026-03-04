@@ -1,32 +1,7 @@
 ---
-description: Checkpoint. Route stash, update state, keep working. Multiple saves per session.
+name: save
+description: "Use when the conductor says to save, checkpoint, wrap up, or route accumulated context — runs the full save protocol: confirms stash items, writes a signed log entry, updates now.md and tasks.md, dispatches cross-walnut notes, and resets the stash so the session can continue."
 user-invocable: true
-triggers:
-  # Direct
-  - "walnut:save"
-  - "save"
-  - "checkpoint"
-  # Intent
-  - "route this"
-  - "save my work"
-  - "persist this"
-  - "lock this in"
-  - "commit this"
-  # Natural pause
-  - "let me save before"
-  - "save and continue"
-  - "quick save"
-  # Wrap up
-  - "that's a good stopping point"
-  - "before I forget"
-  - "let's capture that"
-  # Explicit close (redirects to save)
-  - "close"
-  - "done for now"
-  - "wrap up"
-  - "sign off"
-  - "I'm done"
-  - "that's it"
 ---
 
 # Save
