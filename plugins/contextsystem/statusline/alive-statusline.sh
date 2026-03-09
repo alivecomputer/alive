@@ -10,6 +10,7 @@ SESSION_ID=$(echo "$INPUT" | python3 -c "import sys,json; d=json.load(sys.stdin)
 COST=$(echo "$INPUT" | python3 -c "import sys,json; d=json.load(sys.stdin); c=d.get('cost',{}); print(f\"\${c.get('total_cost_usd',0):.2f}\")" 2>/dev/null || echo "\$0.00")
 CTX_PCT=$(echo "$INPUT" | python3 -c "import sys,json; d=json.load(sys.stdin); cw=d.get('context_window',{}); p=cw.get('used_percentage'); print(f'{p:.0f}' if p is not None else '?')" 2>/dev/null || echo "?")
 CWD=$(echo "$INPUT" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('cwd',''))" 2>/dev/null || echo "")
+MODEL=$(echo "$INPUT" | python3 -c "import sys,json; d=json.load(sys.stdin); m=d.get('model',{}); print(m.get('display_name','?') if isinstance(m,dict) else (m or '?'))" 2>/dev/null || echo "?")
 
 # Colors
 RESET="\033[0m"
@@ -80,4 +81,4 @@ if [ "$CTX_PCT" != "?" ]; then
   fi
 fi
 
-echo -e "${COPPER}🐿️ ${SHORT_ID}${RESET} ${DIM}|${RESET} ${DIM}rules:${RULES}${RESET} ${DIM}|${RESET} ${CTX_COLOR}ctx:${CTX_PCT}%${RESET}${CTX_WARN} ${DIM}|${RESET} ${CYAN}${COST}${RESET}"
+echo -e "${COPPER}🐿️ ${SHORT_ID}${RESET} ${DIM}|${RESET} ${DIM}${MODEL}${RESET} ${DIM}|${RESET} ${DIM}rules:${RULES}${RESET} ${DIM}|${RESET} ${CTX_COLOR}ctx:${CTX_PCT}%${RESET}${CTX_WARN} ${DIM}|${RESET} ${CYAN}${COST}${RESET}"
