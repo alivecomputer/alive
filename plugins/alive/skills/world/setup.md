@@ -95,32 +95,32 @@ generator: world-builder-html
 # World Seed
 
 ## Identity
-name: Ben Flint
-description: Generalist builder, serial starter
-timezone: Pacific/Auckland
+name: Alex Chen
+description: Builder shipping AI-native tools
+timezone: America/Los_Angeles
 
 ## Walnuts
 
-### alive-plugin
+### nova-station
 type: venture
-goal: Ship the alive plugin for Claude Code
+goal: Build the first civilian orbital platform
 rhythm: daily
 
-### walnut-world
-type: venture
-goal: Launch walnut.world platform
+### glass-cathedral
+type: experiment
+goal: Interactive fiction prototype
 rhythm: weekly
 
 ## People
 
-### clara
-name: Clara
-role: Partner
-walnuts: claras-visa
+### ryn-okata
+name: Ryn Okata
+role: Engineering lead
+walnuts: nova-station
 
-### leon-flint
-name: Leon Flint
-role: Dad
+### mira-solaris
+name: Mira Solaris
+role: Co-founder
 
 ## Context Sources
 
@@ -234,7 +234,7 @@ If yes, repeat the name/goal/type/rhythm questions. Allow up to 3 additional wal
 
 #### B5. People (optional, up to 5)
 
-> AskUserQuestion: "Who matters most in your world right now? Give me a name and their role — like 'Clara - partner' or 'Jake - co-founder'. (press enter to skip)"
+> AskUserQuestion: "Who matters most in your world right now? Give me a name and their role — like 'Ryn - engineering lead' or 'Jake - co-founder'. (press enter to skip)"
 
 If they provide a person, store `name` and `role`. Then ask:
 
@@ -466,7 +466,7 @@ For each walnut in the list:
 - `experiment` → `05_Experiments/{{walnut-name-slugified}}/`
 - `life` → `02_Life/goals/{{walnut-name-slugified}}/`
 
-**Slugify the name:** lowercase, spaces to hyphens, strip non-alphanumeric except hyphens. Examples: "Alive Plugin" → "alive-plugin", "Clara's Visa" → "claras-visa".
+**Slugify the name:** lowercase, spaces to hyphens, strip non-alphanumeric except hyphens. Examples: "Nova Station" → "nova-station", "Glass Cathedral" → "glass-cathedral".
 
 **Create the directory structure:**
 ```
@@ -510,7 +510,7 @@ Show:
 
 For each person in the list:
 
-**Slugify the name:** "Clara" → "clara", "Leon Flint" → "leon-flint"
+**Slugify the name:** "Ryn Okata" → "ryn-okata", "Mira Solaris" → "mira-solaris"
 
 **Create the directory structure:**
 ```
