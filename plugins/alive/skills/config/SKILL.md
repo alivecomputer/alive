@@ -1,5 +1,5 @@
 ---
-description: "Use when the human wants to change how the system behaves — toggle preferences, apply walnut-level voice or capture settings, codify a repeatable process as a custom skill, or audit current configuration. Routes to preferences.yaml, walnut config, or a new skill file depending on scope."
+description: "The human wants to change how the system works — not what it contains, but how it behaves. Voice, rhythm, preferences, custom skills. The system adapting to them. Routes to preferences.yaml, walnut config, or a new skill file depending on scope."
 user-invocable: true
 ---
 

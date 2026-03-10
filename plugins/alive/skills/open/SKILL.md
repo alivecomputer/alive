@@ -1,5 +1,5 @@
 ---
-description: "Use when the human names a walnut, says 'let's work on', 'open', 'switch to', 'resume', or 'where was I' — loads that walnut's core files in sequence, surfaces a spark, and establishes single-walnut focus for the session."
+description: "The human has chosen a walnut to focus on. They're ready to work. Load its context, show what's changed, and get out of the way — loads core files in sequence, offers one unprompted observation before asking what to work on, and establishes single-walnut focus."
 user-invocable: true
 ---
 

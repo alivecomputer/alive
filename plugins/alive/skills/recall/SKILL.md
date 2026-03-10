@@ -1,5 +1,5 @@
 ---
-description: "Use when the human wants to resume a previous session, understand what happened in past work, or transfer context into a new conversation — searches session history, then rebuilds and delivers context as a structured briefing or handoff document."
+description: "The human needs context from a previous session. Not a file — the thinking. The decisions, the reasoning, the back-and-forth that produced the current state. Searches session history, then rebuilds and delivers context as a structured briefing or handoff document."
 user-invocable: true
 ---
 

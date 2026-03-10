@@ -1,5 +1,5 @@
 ---
-description: "Use when the human says to save, checkpoint, wrap up, or route accumulated context — runs the full save protocol: confirms stash items, writes a signed log entry, updates now.md and tasks.md, dispatches cross-walnut notes, and resets the stash so the session can continue."
+description: "The human wants to checkpoint. Or: the stash has grown heavy — 5+ items, 30+ minutes, a natural pause in the work. The squirrel doesn't decide when to save. It surfaces the need and lets the human pull the trigger. Runs the full save protocol: confirms stash, writes log, updates state, dispatches, resets."
 user-invocable: true
 ---
 

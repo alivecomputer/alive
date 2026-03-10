@@ -1,5 +1,5 @@
 ---
-description: "Use when the human asks where something is, who someone is, what was decided, or anything that requires retrieving past context — searches decisions, people, files, references, insights, and log history across all walnuts in priority order."
+description: "The human needs something that exists somewhere in the world but they don't know where. A decision, a person, a file, a reference — it's been captured, they just can't find it. Searches decisions, people, files, references, insights, and log history across all walnuts in priority order."
 user-invocable: true
 ---
 

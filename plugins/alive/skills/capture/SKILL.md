@@ -1,5 +1,5 @@
 ---
-description: "Use when external content arrives in the session — emails, transcripts, screenshots, documents, files, or in-session research worth keeping. Stores the raw content and writes a structured companion to _core/_references/, then extracts tasks and insights into the stash."
+description: "Something arrived from outside the system — pasted, uploaded, forwarded, or researched. The squirrel doesn't decide if it's worth keeping. It notices and offers. The human decides what enters the world. Stores raw content, writes a structured companion, extracts tasks and insights into the stash."
 user-invocable: true
 ---
 
