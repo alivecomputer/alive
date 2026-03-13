@@ -144,10 +144,26 @@ def main():
         'phase': 'world', 'size': 24, 'special': True, 'isPerson': False,
     }
     worldbuilder_links = []
-    # Connect to top-level walnuts from key.md links
-    for t in node_ids:
-        if any(d in t for d in ['02_Life', 'sovereign', 'supernormal', 'hypha', 'alive-gtm', 'lock-in']):
-            worldbuilder_links.append({'source': wb_id, 'target': t, 'type': 'link'})
+    # Connect to top-level walnuts from key.md links field
+    try:
+        key_path = os.path.join(world_root, '.alive', 'key.md')
+        if os.path.exists(key_path):
+            with open(key_path) as f:
+                content = f.read()
+            # Parse wikilinks from links: field
+            links_match = re.search(r'^links:\s*(.+)$', content, re.MULTILINE)
+            if links_match:
+                wikilinks = re.findall(r'\[\[([^\]]+)\]\]', links_match.group(1))
+                for wl in wikilinks:
+                    if wl in node_ids:
+                        worldbuilder_links.append({'source': wb_id, 'target': wl, 'type': 'link'})
+    except Exception:
+        pass
+    # Fallback: connect to all top-level domain folders if no links found
+    if not worldbuilder_links:
+        for t in node_ids:
+            if t.startswith('0') and '_' in t:
+                worldbuilder_links.append({'source': wb_id, 'target': t, 'type': 'link'})
 
     inputs_node = {
         'id': 'inputs', 'label': f"{stats['inputs']} inputs",
