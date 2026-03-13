@@ -51,7 +51,7 @@ The graph is written to `.alive/context-graph.html` — a self-contained HTML fi
 - Walnuts (primary nodes — sized by capsule count and recency)
 - People (toggle — shown for people who connect 2+ walnuts)
 - Capsules (expandable — click a walnut to show its capsules as orbiting nodes)
-- Central "Ben Flint" node connecting top-level walnuts
+- Central worldbuilder node connecting top-level walnuts
 - Inputs buffer node showing unrouted count
 
 **Edges:**
