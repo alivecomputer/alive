@@ -122,16 +122,32 @@ def main():
                         'type': 'person', 'label': person,
                     })
 
-    ben_node = {
-        'id': 'ben-flint', 'label': 'Ben Flint', 'domain': 'life',
+    # Central worldbuilder node — reads name from .alive/key.md at runtime
+    wb_name = 'worldbuilder'
+    wb_id = 'worldbuilder'
+    try:
+        import re
+        key_path = os.path.join(world_root, '.alive', 'key.md')
+        if os.path.exists(key_path):
+            with open(key_path) as f:
+                content = f.read()
+            m = re.search(r'^name:\s*(.+)$', content, re.MULTILINE)
+            if m:
+                wb_name = m.group(1).strip()
+                wb_id = wb_name.lower().replace(' ', '-')
+    except Exception:
+        pass
+
+    worldbuilder_node = {
+        'id': wb_id, 'label': wb_name, 'domain': 'life',
         'type': 'world', 'goal': 'Build the life, ventures, and systems that matter',
         'phase': 'world', 'size': 24, 'special': True, 'isPerson': False,
     }
-    ben_links = []
-    for t in ['02_Life', 'sovereign-systems', 'supernormal-systems',
-              'hypha', 'alive-gtm', 'lock-in-lab']:
-        if t in node_ids:
-            ben_links.append({'source': 'ben-flint', 'target': t, 'type': 'link'})
+    worldbuilder_links = []
+    # Connect to top-level walnuts from key.md links
+    for t in node_ids:
+        if any(d in t for d in ['02_Life', 'sovereign', 'supernormal', 'hypha', 'alive-gtm', 'lock-in']):
+            worldbuilder_links.append({'source': wb_id, 'target': t, 'type': 'link'})
 
     inputs_node = {
         'id': 'inputs', 'label': f"{stats['inputs']} inputs",
@@ -140,8 +156,8 @@ def main():
         'phase': 'buffer', 'size': 14, 'special': True, 'isPerson': False,
     }
 
-    all_nodes = nodes + [ben_node, inputs_node]
-    all_links = links + ben_links
+    all_nodes = nodes + [worldbuilder_node, inputs_node]
+    all_links = links + worldbuilder_links
 
     nj = json.dumps(all_nodes, ensure_ascii=False)
     lj = json.dumps(all_links, ensure_ascii=False)
@@ -694,7 +710,7 @@ function render() {{
     .attr("r", d=>d.size)
     .attr("fill", d => {{
       if (d.isCapsule) {{ const cs = {{draft:t.capDraft, prototype:t.capPrototype, published:t.capPublished, done:t.capDone}}; return cs[d.capsuleStatus]||t.capDraft; }}
-      if (d.special && d.id==="ben-flint") return t.benFill;
+      if (d.special && d.special) return t.benFill;
       if (d.isPerson) return t.people;
       return t[d.domain] || t.archive;
     }})
@@ -709,7 +725,7 @@ function render() {{
     }})
     .attr("stroke", d => {{
       if (d.isCapsule && d.isActiveCapsule) return t[`cap${{d.capsuleStatus?.charAt(0).toUpperCase()}}${{d.capsuleStatus?.slice(1)}}`] || "#fff";
-      if (d.special && d.id==="ben-flint") return t.benStroke;
+      if (d.special && d.special) return t.benStroke;
       if (!d.isCapsule && d.daysSince<=1) return t.benFill;
       if (!d.isCapsule && d.capsuleCount>10) return t[d.domain]||t.archive;
       return "transparent";
